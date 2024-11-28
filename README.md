@@ -5,3 +5,11 @@
 
 ## Problem statement
 High school graduates often face significant challenges when deciding on a university due to the lack of centralized and accessible information about available programs, seat availability, and university-specific requirements. This can lead to confusion, missed opportunities, and poor decision-making for students and their families. Despite the importance of this decision, many students rely on fragmented resources such as individual university websites, social media, or word-of-mouth, which are often outdated, incomplete, or inconsistent. For students exploring universities in Egypt, these challenges are further compounded by the need for tailored information regarding scholarships, housing, transportation, and cultural integration. Both local and international students may struggle with limited resources to navigate the unique requirements and environment of Egyptian universities. There is a need for an intuitive, comprehensive, and real-time **Egyptian Universities Guide** platform that consolidates information on universities, programs, eligibility, seat availability, and more. the platform can ensure a smoother transition into university life and empower students to achieve their academic goals.
+
+## User personas:
+- General secondary education schools,  Al-Azhar Secondary Education schools, international schools graduates, Equivalency students from abroad.
+
+## Functional Requirements
+- User:
+  - Enable users to Login/Register/Logout
+  - Enable users to set preferences (getting notified with new scholarship – Adding new programs, majors, universities…etc)
