@@ -1,6 +1,6 @@
 # Egyptian Universities Guide
 
-##Overview
+## Overview
 - This project develops an interactive platform to help students explore universities in Egypt. It provides accurate, up-to-date information about higher education institutions, targeting both local and international students.
 
 ### Features
