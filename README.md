@@ -1,18 +1,7 @@
 # Egyptian Universities Guide
 
-## Overview
-- This project develops an interactive platform to help students explore universities in Egypt. It provides accurate, up-to-date information about higher education institutions, targeting both local and international students.
+## Project Idea
+- This project develops an interactive platform to guide students exploring universities in Egypt. The platform offers a comprehensive overview about universities in Egypt with features like map of universities in Egypt, virtual campus tours, program comparisons, and student overviews. In addition, it offers an information about Scholarships, resources of housing, transportation and cultural integration. It is designed to help local and international students in Egypt to find their best bath in universities.
 
-### Features
-- **Map of Universities in Egypt**: A visual representation of universities to help students identify their locations and navigate easily.
-- **Virtual Campus Tours**: Explore university campuses remotely through immersive virtual tours.
-- **Program Comparisons**: Compare different academic programs to find the best fit for your goals.
-- **Student Overviews**: Insights from current and former students about their experiences.
-- **Scholarship Information**: A curated list of available scholarships to assist students financially.
-- **Housing Resources**: Guidance on finding suitable accommodation near universities.
-- **Transportation Options**: Information on transportation networks for easy commuting.
-- **Cultural Integration Support**: Resources to help international students adapt to life in Egypt.
-
-### Goal
-
-This platform is designed to simplify the university selection process and support students in finding the best path for their educational and personal growth in Egypt.
+## Problem statement
+High school graduates often face significant challenges when deciding on a university due to the lack of centralized and accessible information about available programs, seat availability, and university-specific requirements. This can lead to confusion, missed opportunities, and poor decision-making for students and their families. Despite the importance of this decision, many students rely on fragmented resources such as individual university websites, social media, or word-of-mouth, which are often outdated, incomplete, or inconsistent. For students exploring universities in Egypt, these challenges are further compounded by the need for tailored information regarding scholarships, housing, transportation, and cultural integration. Both local and international students may struggle with limited resources to navigate the unique requirements and environment of Egyptian universities. There is a need for an intuitive, comprehensive, and real-time **Egyptian Universities Guide** platform that consolidates information on universities, programs, eligibility, seat availability, and more. the platform can ensure a smoother transition into university life and empower students to achieve their academic goals.
