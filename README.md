@@ -21,10 +21,10 @@ High school graduates often face significant challenges when deciding on a unive
   - Enable users to choose item from the list to view detailed information about it.
   - Enable users to apply filters (location, tuition fees ranges, programs, majors)
   - Enable users to make comparisons between universities/programs/scholarships with green and red highlighting (if possible).
-  - **Interactive Map** :
+  - Interactive Map :
     - Enable users to view the locations of all universities in Egypt and can apply filter the same way in search
-  - Enable users to choose a certain university to view all the nearest housing options details.
-  - Enable users to view connections between the viewed housing options and the universities (Routes, transportations, estimated times, costs)
+    - Enable users to choose a certain university to view all the nearest housing options details.
+    - Enable users to view connections between the viewed housing options and the universities (Routes, transportations, estimated times, costs)
 ## Non-Functional Requirements
 - Speed and Performance
   - The platform should load within few seconds for the homepage under normal traffic.
