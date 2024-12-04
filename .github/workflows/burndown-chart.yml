@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install matplotlib pandas
+        pip install matplotlib pandas PyGithub
 
     - name: Run burndown chart script
       env:
