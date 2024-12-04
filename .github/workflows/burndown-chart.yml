@@ -24,7 +24,7 @@ jobs:
 
     - name: Run burndown chart script
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.YOUR_NEW_SECRET }}
       run: python generate_burndown.py
 
     - name: Commit and push chart
