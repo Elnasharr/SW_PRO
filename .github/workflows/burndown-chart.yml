@@ -1,26 +1,26 @@
-name: Burndown Chart Generator
+name: Generate Burndown Chart
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  generate-burndown-chart:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Python
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.9'  
 
     - name: Install dependencies
       run: |
-        pip install matplotlib pandas PyGithub
+        pip install matplotlib pandas
 
     - name: Run burndown chart script
       env:
