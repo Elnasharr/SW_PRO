@@ -2,44 +2,32 @@ name: Burndown Chart Generator
 
 on:
   schedule:
-    # Run the workflow daily at midnight
-    - cron: '0 0 * * *'
-  workflow_dispatch: # Allow manual triggering of the workflow
-  push:
-    paths:
-      - '**.md'
-      - '**.yml'
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  workflow_dispatch:
 
 jobs:
   generate-burndown-chart:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Set up Python (or any required language environment)
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
-    # Install dependencies
     - name: Install dependencies
       run: |
-        pip install matplotlib pandas github_project_burndown_chart
+        pip install matplotlib pandas PyGithub
 
-    # Generate burndown chart
-    - name: Generate Burndown Chart
-      run: |
-        python -m github_project_burndown_chart \
-          --repo ${{ github.repository }} \
-          --token ${{ secrets.GITHUB_TOKEN }} \
-          --output burndown_chart.png
+    - name: Run burndown chart script
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python generate_burndown.py
 
-    # Commit and push the burndown chart
-    - name: Commit and Push Chart
+    - name: Commit and push chart
       run: |
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
