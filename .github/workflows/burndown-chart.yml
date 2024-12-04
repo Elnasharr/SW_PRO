@@ -16,19 +16,21 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.9'  
 
     - name: Install dependencies
       run: |
-        pip install matplotlib pandas
+        pip install matplotlib pandas PyGithub
 
     - name: Run burndown chart script
+      env:
+        GITHUB_TOKEN: ${{ secrets.SECRET }}
       run: python generate_burndown.py
 
     - name: Commit and push chart
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
         git add burndown_chart.png
         git commit -m "Update burndown chart"
         git push
