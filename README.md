@@ -15,7 +15,6 @@ High school graduates often face significant challenges when deciding on a unive
   - Enable users to set preferences (getting notified with new scholarship – Adding new programs, majors, universities…etc)
 - Users Engagement:
   - Enable users to report issues (not up-to-date information, missing information, etc…)
-  - Enable users to send requests to talk to universities’ alumni, current students to take advice.
 - University Information:
   - List all the universities/programs/scholarships names
   - Enable users to choose item from the list to view detailed information about it.
