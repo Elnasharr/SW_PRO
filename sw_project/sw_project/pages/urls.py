@@ -9,3 +9,4 @@ urlpatterns = [
     path('scholarships/<int:scholarship_id>/', views.scholarship_details, name='scholarship_details'),  
    
 ]
+#last
