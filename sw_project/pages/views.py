@@ -61,3 +61,11 @@ def universities(request):
 def university_details(request):
     template = loader.get_template('university-details.html')
     return HttpResponse(template.render())
+
+
+
+"""
+safdjlkdasjg;a
+
+
+"""
