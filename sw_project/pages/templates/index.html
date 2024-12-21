@@ -6,6 +6,7 @@
     <title>Egyptian Universities Guide</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <!-- Navbar -->
@@ -24,7 +25,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' request.user.userID %}">Profile</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -40,24 +40,24 @@
     </section>
 
     <!-- Features Section -->
-<section id="features" class="py-5">
-    <div class="container">
-        <div class="row justify-content-center align-items-center text-center">
-            <div class="col-md-4">
-                <div class="p-3">
-                    <h3>Interactive Map</h3>
-                    <p>Find universities and nearby housing with routes and transportation details.</p>
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center text-center">
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h3>Interactive Map</h3>
+                        <p>Find universities and nearby housing with routes and transportation details.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-3">
-                    <h3>Compare Programs</h3>
-                    <p>Easily compare programs and scholarships to make informed decisions.</p>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h3>Compare Programs</h3>
+                        <p>Easily compare programs and scholarships to make informed decisions.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- University List Section -->
     <section id="universities" class="py-5 bg-light">
@@ -68,8 +68,8 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">{{university.name}}</h5>
-                            <p class="card-text">{{university.short_description}}</p>
+                            <h5 class="card-title">{{ university.name }}</h5>
+                            <p class="card-text">{{ university.short_description }}</p>
                             <a href="{% url 'university_details' university.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
@@ -99,14 +99,13 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">{{scholarship.name}}</h5>
-                            <p class="card-text">{{scholarship.short_description}}</p>
+                            <h5 class="card-title">{{ scholarship.name }}</h5>
+                            <p class="card-text">{{ scholarship.short_description }}</p>
                             <a href="{% url 'scholarship_details' scholarship.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-                
             </div>
         </div>
         <div class="text-center mt-4">
@@ -120,6 +119,33 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map-container').setView([26.8206, 30.8025], 6); // Centered on Egypt
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add markers for each university
+        var universities = [
+            {% for university in all_universities %}
+            {
+                name: "{{ university.name }}",
+                lat: {{ university.latitude }},  // Ensure you have latitude in your model
+                lng: {{ university.longitude }}   // Ensure you have longitude in your model
+            },
+            {% endfor %}
+        ];
+
+        universities.forEach(function(university) {
+            L.marker([university.lat, university.lng])
+                .addTo(map)
+                .bindPopup(university.name);
+        });
+    </script>
 </body>
 </html>
