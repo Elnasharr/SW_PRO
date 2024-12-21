@@ -31,7 +31,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Egyptian Universities Guide</a>
+            <a class="navbar-brand" href="{url 'index'}">Egyptian Universities Guide</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,10 +54,10 @@
                             style="width: 300px; height: auto;border-radius:50% ">
                     </div>
                     <div class="col-md-8">
-                        <h1 class="display-4">[University Name]</h1>
-                        <p class="lead mb-3">[University Address]</p>
-                        <h4 class="mb-4">Rank: [University Rank]</h4>
-                        <a href="[University Website URL]" target="_blank" class="btn btn-light btn-lg">Visit
+                        <h1 class="display-4">{{university.name}}</h1>
+                        <p class="lead mb-3">{{university.location}}</p>
+                        <h4 class="mb-4">Rank: {{university.ranking}}</h4>
+                        <a href = "" target="_blank" class="btn btn-light btn-lg">Visit
                             Website</a>
                         <p class="mb-5"></p>
                     </div>
@@ -70,7 +70,7 @@
             <div class="container">
                 <h2 class="text-center mb-4">About the University</h2>
                 <p class="text-center" style="font-size: 1.2rem; line-height: 1.8;">
-                    [University Information goes here... Include details about programs, history, and unique features.]
+                    {{university.about}}
                 </p>
             </div>
         </section>
