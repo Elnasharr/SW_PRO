@@ -1,26 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.template import loader
 from .models import University, Scholarship
 
 # Create your views here.
 def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    return render(request, 'index.html')
 
 
 def profile(request):
-    template = loader.get_template('profile.html')
-    return HttpResponse(template.render())
+    return render(request, 'profile.html')
 
 
-def scholarship_details(request):
-    template = loader.get_template('scholarship-details.html')
-    return HttpResponse(template.render())
+def scholarship_details(request, scholarship_id):
+   
+    scholarship = get_object_or_404(Scholarship, id=scholarship_id)
+    context = {
+        'scholarship': scholarship,
+    }
+    return render(request, 'scholarship-details.html', context)
 
 
 def scholarships(request):
-    query = request.GET.get('query', '')
+    
+    query = request.GET.get('query', '')  
     if query:
         scholarships = Scholarship.objects.filter(
             name__icontains=query
@@ -30,16 +32,17 @@ def scholarships(request):
             about__icontains=query
         )
     else:
-        scholarships = Scholarship.objects.all()
+        scholarships = Scholarship.objects.all()  
 
     context = {
         'scholarships': scholarships,
     }
-    
     return render(request, 'scholarships.html', context)
 
+
 def universities(request):
-    query = request.GET.get('query', '')
+   
+    query = request.GET.get('query', '') 
     if query:
         universities = University.objects.filter(
             name__icontains=query
@@ -49,23 +52,17 @@ def universities(request):
             about__icontains=query
         )
     else:
-        universities = University.objects.all()
+        universities = University.objects.all()  
 
     context = {
         'universities': universities,
     }
-    
     return render(request, 'universities.html', context)
 
 
-def university_details(request):
-    template = loader.get_template('university-details.html')
-    return HttpResponse(template.render())
-
-
-
-"""
-safdjlkdasjg;a
-
-
-"""
+def university_details(request, university_id):
+    university = get_object_or_404(University, id=university_id)
+    context = {
+        'university': university,
+    }
+    return render(request, 'university-details.html', context)
