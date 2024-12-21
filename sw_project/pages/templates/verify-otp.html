@@ -1,0 +1,7 @@
+<!-- verify_otp.html -->
+<form method="POST">
+    {% csrf_token %}
+    <p>An OTP has been sent to {{ email }}</p>
+    <input type="text" name="otp" placeholder="Enter OTP" required>
+    <button type="submit">Verify OTP</button>
+</form>
