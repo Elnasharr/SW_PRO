@@ -9,7 +9,6 @@ from django.contrib.auth.models import UserManager
 from django.contrib.auth.hashers import make_password
 import random
 from django.core.mail import send_mail
-from django_otp.plugins.otp_email.models import EmailDevice
 import time 
 
 # Create your views here.
@@ -24,9 +23,12 @@ def index(request):
     return render(request, 'index.html', context)
 
 @login_required
-def profile(request):
-    template = loader.get_template('profile.html')
-    return HttpResponse(template.render())
+def profile(request, user_id):
+    user = get_object_or_404(User, userID=user_id)  # Fetch the user by ID
+    context = {
+        'user': user,
+    }
+    return render(request, 'profile.html', context)
 
 @login_required
 def scholarship_details(request, id):
@@ -93,8 +95,10 @@ def login(request):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             auth_login(request, user)  
-            next_url = request.GET.get('next', 'index')  
-            return redirect(next_url)
+            next_url = request.GET.get('next')  # Get the next parameter
+            if next_url:  # If next_url is provided, redirect to it
+                return redirect(next_url)
+            return redirect('index')  # Default redirect if no next parameter
         else:
             messages.error(request, 'Invalid email or password')
 
@@ -116,9 +120,10 @@ def signup(request):
             new_user = User.objects.create(
                 name=name,
                 email=email,
-                password=make_password(password)
+                password=make_password(password)  # Ensure the password is hashed
             )
             new_user.save()
             messages.success(request, 'You have signed up successfully!')
+            return redirect('login')  # Redirect to the login page after signup
 
     return render(request, 'signup.html')

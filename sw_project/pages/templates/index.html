@@ -21,7 +21,10 @@
                     <li class="nav-item"><a class="nav-link" href="#universities">Universities</a></li>
                     <li class="nav-item"><a class="nav-link" href="#map">Map</a></li>
                     <li class="nav-item"><a class="nav-link" href="#scholarships">Scholarships</a></li>
-                    <li class="nav-item d-none" id="profileNavItem"><a class="nav-link" href="{url 'profile'}">Profile</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' request.user.userID %}">Profile</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
