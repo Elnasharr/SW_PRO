@@ -15,9 +15,11 @@ import time
 @login_required
 def index(request):
     universities = University.objects.all()[:3]
+    all_universities = University.objects.all()
     scholarships = Scholarship.objects.all()[:3]
     context = {
         'universities':universities,
+        "all_universities":all_universities,
         'scholarships':scholarships,
     }
     return render(request, 'index.html', context)

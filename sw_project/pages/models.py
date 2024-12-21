@@ -13,7 +13,8 @@ class University(models.Model):
     programs = models.ManyToManyField('Program', related_name='universities')  # Many-to-many with Program
     scholarships = models.ManyToManyField('Scholarship', related_name='universities')  # Many-to-many with Scholarship
     short_description = models.CharField(max_length=255, default='Your default value here')
-
+    latitude = models.FloatField(null=True) 
+    longitude = models.FloatField(null=True) 
 
     def __str__(self):
         return f"{self.name} | {self.location}"
