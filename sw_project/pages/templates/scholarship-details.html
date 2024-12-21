@@ -48,10 +48,10 @@
         <!-- Hero Section -->
         <header class="bg-primary text-white text-center py-5">
             <div class="container">
-                <h1 class="display-4">[Scholarship Name]</h1>
-                <p class="lead mb-3">[Eligibility Criteria]</p>
-                <h4 class="mb-4">Funding: [Scholarship Funding]</h4>
-                <a href="[Scholarship Website URL]" target="_blank" class="btn btn-light btn-lg">Apply Now</a>
+                <h1 class="display-4">{{scholarship.name}}</h1>
+                <p class="lead mb-3">{{scholarship.short_description}}</p>
+                <h4 class="mb-4">Funding: {{scholarship.amount}}</h4>
+                <a href="" target="_blank" class="btn btn-light btn-lg">Apply Now</a>
             </div>
         </header>
 
@@ -60,8 +60,7 @@
             <div class="container">
                 <h2 class="text-center mb-4">About the Scholarship</h2>
                 <p class="text-center" style="font-size: 1.2rem; line-height: 1.8;">
-                    [Detailed information about the scholarship goes here... Include details about eligibility,
-                    requirements, and application process.]
+                    {{scholarship.about}}
                 </p>
             </div>
         </section>

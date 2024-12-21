@@ -1,28 +1,46 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import University, Scholarship
+from django.template import loader
+from .models import University, Scholarship, User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.models import UserManager
+from django.contrib.auth.hashers import make_password
+import random
+from django.core.mail import send_mail
+from django_otp.plugins.otp_email.models import EmailDevice
+import time 
 
 # Create your views here.
+@login_required
 def index(request):
-    return render(request, 'index.html')
+    universities = University.objects.all()[:3]
+    scholarships = Scholarship.objects.all()[:3]
+    context = {
+        'universities':universities,
+        'scholarships':scholarships,
+    }
+    return render(request, 'index.html', context)
 
-
+@login_required
 def profile(request):
-    return render(request, 'profile.html')
+    template = loader.get_template('profile.html')
+    return HttpResponse(template.render())
 
-
-def scholarship_details(request, scholarship_id):
-   
-    scholarship = get_object_or_404(Scholarship, id=scholarship_id)
+@login_required
+def scholarship_details(request, id):
+       
+    scholarship = get_object_or_404(Scholarship, id=id)
     context = {
         'scholarship': scholarship,
     }
     return render(request, 'scholarship-details.html', context)
 
 
+@login_required
 def scholarships(request):
-    
-    query = request.GET.get('query', '')  
+    query = request.GET.get('query', '')
     if query:
         scholarships = Scholarship.objects.filter(
             name__icontains=query
@@ -32,17 +50,16 @@ def scholarships(request):
             about__icontains=query
         )
     else:
-        scholarships = Scholarship.objects.all()  
+        scholarships = Scholarship.objects.all()
 
     context = {
         'scholarships': scholarships,
     }
     return render(request, 'scholarships.html', context)
 
-
+@login_required
 def universities(request):
-   
-    query = request.GET.get('query', '') 
+    query = request.GET.get('query', '')
     if query:
         universities = University.objects.filter(
             name__icontains=query
@@ -52,17 +69,56 @@ def universities(request):
             about__icontains=query
         )
     else:
-        universities = University.objects.all()  
+        universities = University.objects.all()
 
     context = {
         'universities': universities,
     }
     return render(request, 'universities.html', context)
 
-
-def university_details(request, university_id):
-    university = get_object_or_404(University, id=university_id)
+@login_required
+def university_details(request, id):
+    university = get_object_or_404(University, id=id)
     context = {
         'university': university,
     }
     return render(request, 'university-details.html', context)
+
+
+def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            auth_login(request, user)  
+            next_url = request.GET.get('next', 'index')  
+            return redirect(next_url)
+        else:
+            messages.error(request, 'Invalid email or password')
+
+    return render(request, 'login.html')
+
+
+otp_storage = {}
+
+def signup(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'An account with the same email exists.')
+        else:
+            # Hash the password before saving
+            new_user = User.objects.create(
+                name=name,
+                email=email,
+                password=make_password(password)
+            )
+            new_user.save()
+            messages.success(request, 'You have signed up successfully!')
+
+    return render(request, 'signup.html')

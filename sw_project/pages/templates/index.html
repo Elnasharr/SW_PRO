@@ -21,8 +21,7 @@
                     <li class="nav-item"><a class="nav-link" href="#universities">Universities</a></li>
                     <li class="nav-item"><a class="nav-link" href="#map">Map</a></li>
                     <li class="nav-item"><a class="nav-link" href="#scholarships">Scholarships</a></li>
-                    <li class="nav-item" id="loginNavItem"><a class="nav-link" href="login.html">Login</a></li>
-                    <li class="nav-item d-none" id="profileNavItem"><a class="nav-link" href="profile.html">Profile</a></li>
+                    <li class="nav-item d-none" id="profileNavItem"><a class="nav-link" href="{url 'profile'}">Profile</a></li>
                 </ul>
             </div>
         </div>
@@ -62,33 +61,17 @@
         <div class="container">
             <h2 class="text-center mb-4">Universities</h2>
             <div class="row">
+                {% for university in universities %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">University Name</h5>
-                            <p class="card-text">Brief description or highlights.</p>
-                            <a href="university-details.html" class="btn btn-primary">View Details</a>
+                            <h5 class="card-title">{{university.name}}</h5>
+                            <p class="card-text">{{university.short_description}}</p>
+                            <a href="{% url 'university_details' university.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">University Name</h5>
-                            <p class="card-text">Brief description or highlights.</p>
-                            <a href="university-details.html" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">University Name</h5>
-                            <p class="card-text">Brief description or highlights.</p>
-                            <a href="university-details.html" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="text-center mt-4">
@@ -109,33 +92,18 @@
         <div class="container">
             <h2 class="text-center mb-4">Scholarships</h2>
             <div class="row">
+                {% for scholarship in scholarships %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Scholarship Name</h5>
-                            <p class="card-text">Brief description or eligibility criteria.</p>
-                            <a href="scholarship-details.html" class="btn btn-primary">View Details</a>
+                            <h5 class="card-title">{{scholarship.name}}</h5>
+                            <p class="card-text">{{scholarship.short_description}}</p>
+                            <a href="{% url 'scholarship_details' scholarship.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Scholarship Name</h5>
-                            <p class="card-text">Brief description or eligibility criteria.</p>
-                            <a href="scholarship-details.html" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Scholarship Name</h5>
-                            <p class="card-text">Brief description or eligibility criteria.</p>
-                            <a href="scholarship-details.html" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+                
             </div>
         </div>
         <div class="text-center mt-4">
