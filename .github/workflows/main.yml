@@ -12,6 +12,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -25,6 +34,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r sw_project/requirements.txt
+
+    - name: Wait for MySQL to start
+      run: |
+        while ! mysqladmin ping -h"localhost" --silent; do
+          echo "Waiting for mysql server...";
+          sleep 2;
+        done;
 
     - name: Run Django tests
       run: |
