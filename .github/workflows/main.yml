@@ -1,4 +1,4 @@
-name: Django CI
+name: Django Tests
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
+    - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Set up Python
@@ -26,6 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r sw_project/requirements.txt
 
-    - name: Run tests
-      run: |
-        python manage.py test
+    - name: Change directory to sw_project
+      run: cd sw_project
+
+    - name: Run Django tests
+      run: python manage.py test
