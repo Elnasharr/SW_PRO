@@ -26,8 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r sw_project/requirements.txt
 
-    - name: Change directory to sw_project
-      run: cd sw_project
-
     - name: Run Django tests
-      run: python manage.py test
+      run: |
+        cd sw_project
+        python manage.py test
