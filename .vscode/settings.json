@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.dbclient-js": "javascript",
-        "AHMED.C": "cpp"
+        "AHMED.C": "cpp",
+        "AMR.C": "cpp"
     }
 }
